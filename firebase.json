@@ -1,0 +1,24 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "cleanUrls":true,
+    "trailingSlash":false
+  },
+  "error_pages":[
+    {"code":400,"path":"/400.html"},
+    {"code":401,"path":"/401.html"},
+    {"code":403,"path":"/403.html"},
+    {"code":404,"path":"/404.html"},
+    {"code":451,"path":"/451.html"},
+    {"code":500,"path":"/500.html"},
+    {"code":502,"path":"/502.html"},
+    {"code":503,"path":"/503.html"},
+    {"code":504,"path":"/504.html"},
+    {"code":505,"path":"/505.html"}
+  ]
+}
