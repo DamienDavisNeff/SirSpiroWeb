@@ -1,13 +1,11 @@
 #about {
     margin: 40px 0 40px 0;
     width: 100%;
-    vertical-align: middle;
 }
 .about-parent {
     display: flex;
     align-items: center;
     justify-content: center;
-    
 }
 .about-text {
     text-align: center;
@@ -21,6 +19,12 @@
     transition-duration: 250ms;
 } .banner:hover {
     width:21vw;
+}
+
+.banner.small {
+    width: 15vw;
+} .banner.small:hover {
+    width: 15.5vw;
 }
 
 .wave img.emoji  {

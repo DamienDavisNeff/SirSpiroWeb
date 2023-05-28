@@ -1,6 +1,6 @@
 #announcement-holder {
   background-color: var(--announce-color);
-  padding: 20px;
+  padding: var(--padding-amount);
   position: fixed;
   top: 0;
   left: 0;

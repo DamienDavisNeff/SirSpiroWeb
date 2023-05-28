@@ -12,7 +12,7 @@
     max-width: 45%; /* Adjust the max-width as desired */
     text-align: center;
     background-color: var(--project-color);
-    padding: 20px;
+    padding: var(--padding-amount);
     border-radius: 8px;
     transition-duration: 250ms;
     vertical-align: middle;

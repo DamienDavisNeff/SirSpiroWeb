@@ -34,3 +34,13 @@
 .rotate-hover-small:hover {
     transform: rotate(10deg);
 }
+
+.rotate-hover.scale:hover {
+    transform: rotate(25deg) scale(1.2,1.2);
+}
+.rotate-hover-small.scale:hover {
+    transform: rotate(10deg) scale(1.2,1.2);
+}
+.scale:hover {
+    transform: scale(1.2,1.2);
+}
