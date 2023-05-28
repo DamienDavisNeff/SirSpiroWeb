@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <!-- -->
+    <meta property="og:title" content="Error"/>
+    <meta property="og:image" content="https://www.sirspiro.com/error_red.png"/>
+    <meta property="og:description" content="An error has occured. Try again later, or try a different link."/>
+    <meta property="og:url" content="https://www.sirspiro.com"/>
+    <meta property="og:image:width" content="2681"/>
+    <meta property="og:image:height" content="1878"/>
+    <meta property="og:type" content="website"/>
+    <!-- -->
+    <link rel="shortcut icon" href="https://www.sirspiro.com/error_favicon.png" onerror="this.href='error_favicon.png'" type="image/png">
+    <style>
+        * { transition-duration: 250ms; }
+        html { 
+            font-family: sans-serif;
+            text-transform: capitalize;
+            background-color: rgb(100,0,0);
+            overflow:hidden;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+            transition-duration: 1ms !important;
+        } a:hover { 
+            color: rgb(20, 20, 20);
+            transition-duration: 1ms !important;
+        }
+        .parent-horizontal { text-align: center; }
+        .error-code, .error-text, .seperator {
+            display: inline-block;
+            font-weight: bold;
+            font-size: 4vw;
+        }
+        .low-opacity { opacity:0.6; }
+        .error-image {
+            vertical-align: middle;
+            width:35%;
+        } .error-image:hover { width:40%; }
+        .seperator { opacity: 0; }
+        @media screen and (orientation:portrait) {
+            .parent-vertical { margin-top: 30%; }
+        }
+        @media screen and (orientation:landscape) {
+            .parent-vertical { margin-top: -3%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="parent-vertical">
+        <div class="parent-horizontal">
+            <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes" target="_blank">
+                <p class="error-code">504.</p>
+            </a>
+            <p class="seperator">.</p>
+            <p class="error-text low-opacity">Gateway Timeout</p>
+	    </div>
+        <div class="parent-horizontal">
+            <a href="https://www.sirspiro.com">
+                <img src="https://www.sirspiro.com/error_red.png" onerror="this.src='error_red.png'" alt="Broken version of SirSpiro logo. A red 'S' where each layer is falling" class="error-image">
+,            </a>
+        </div>
+        <div class="parent-horizontal">
+            <p class="error-text">The server didn't respond, try waking it up</p>
+        </div>
+    </div>
+    
+</body>
+</html>

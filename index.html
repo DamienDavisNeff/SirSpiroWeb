@@ -1,0 +1,129 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing</title>
+    <!-- -->
+    <meta property="og:title" content="SirSpiro - Home"/>
+    <meta property="og:image" content="https://www.sirspiro.com/images/branding/spiro/normal.png"/>
+    <meta property="og:description" content="The home page for SirSpiro, will all the information about him and his various ventures."/>
+    <meta property="og:url" content="https://www.sirspiro.com"/>
+    <meta property="og:image:width" content="3000"/>
+    <meta property="og:image:height" content="3000"/>
+    <meta property="og:type" content="website"/>
+    <!-- -->
+    <link rel="shortcut icon" href="images/branding/spiro/white.png" type="image/png">
+
+    <!-- -->
+    <link rel="stylesheet" href="style/announcement.css">
+    <link rel="stylesheet" href="style/navigation.css">
+    <link rel="stylesheet" href="style/about.css">
+    <link rel="stylesheet" href="style/projects.css">
+    <link rel="stylesheet" href="style/graphic.css">
+    <link rel="stylesheet" href="style/contact.css">
+    <!-- -->
+    <script src="scripts/announce.js" defer></script>
+    <script src="scripts/global.js"></script>
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <!-- -->
+    <link rel="stylesheet" href="style/root.css">
+</head>
+<body>
+    <div id="announcement-holder" style="display:none">
+        <div class="announcement-parent">
+            <p id="announce-title" style="display:none"></p>
+            <p id="announce-content" style="display:none"></p>
+            <p id="announce-author" style="display:none"></p>
+            <p id="announce-date" style="display:none"></p>
+        </div>
+    </div>
+    <div id="content">
+        <div id="nav">
+            <a href="./"><img class="logo-nav rotate-hover" src="images/favicon.png"></a>
+            <div class="social-nav">
+                <a href="https://www.youtube.com/@SirSpiro" target="_blank"><img class="img-nav" src="images/icons/social/YouTube.png"></a>
+                <a href="https://www.twitter.com/SirSpiroSZN" target="_blank"><img class="img-nav rotate-hover-small" src="images/icons/social/Twitter.png"></a>
+                <a href="https://discord.gg/xz3S4nK" target="_blank"><img class="img-nav" src="images/icons/social/Discord.png"></a>
+                <a href="https://www.github.com/DamienDavisNeff" target="_blank"><img class="img-nav" src="images/icons/social/GitHub.png"></a>
+                <a href="settings/index.html" target="_blank"><img class="img-nav rotate-hover" src="images/icons/social/Settings.png"></a>    
+            </div>
+        </div>
+        <div class="main-contents">
+            <hr>
+            <div id="about">
+                <div class="about-parent">
+                    <div class="banner-container">
+                        <img class="banner" src="images/photos/banner.png" alt="" type="desktop">
+                        <img class="banner" src="images/photos/banner2.png" alt="" type="mobile">
+                    </div>
+                    <div class="about-content">
+                        <h1 class="wave">Hello &#x1f44b</h1>
+                        <p class="subheader">I'm Damien, aka SirSpiro.</p>
+                        <p class="about-text" type="desktop">I do things from time to time.</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div id="projects">
+                <div class="project-parent left" onclick="GoToLink(`https://chrome.google.com/webstore/detail/return-the-red-subscribe/jelocjcknmhfifcapebeibnolciholbl`,true)">
+                    <img class="project-image" src="images/projects/RedSubscribeButton.jpg" alt="">
+                    <p>Brings back the classic red subscribe button. Returns the Subscribe Button's red color, keeping YouTube's history alive while keeping the new design fresh and fully customizable.</p>
+                </div>
+                <div class="project-parent right" onclick="GoToLink(`https://chrome.google.com/webstore/detail/youtube-studio-favicon/mkafoonfjjnhnglfeiladhgnekbkggll`,true)">
+                    <img class="project-image" src="images/projects/YouTubeStudioFavicon.jpg" alt="">
+                    <p>Gives YouTube Studio a separate favicon, which is the Studio's Mobile App icon, to differentiate it from the main YouTube site and ease confusion when using multiple tabs.</p>
+                </div>
+            </div>
+            <hr>
+            <div id="graphic-design">
+                <div id="thumbnails">
+                    <img src="images/thumbnails/ArkhamCity.jpg" class="youtube-thumbnail">
+                    <img src="images/thumbnails/NoBuild.jpg" class="youtube-thumbnail">
+                </div>
+                <hr>
+                <div id="branding">
+                    <div class="branding-collection">
+                        <div class="grid-item"><img src="images/branding/spiro/normal_bg.png" class="youtube-logo"></div>
+                        <div class="grid-item"><img src="images/branding/spiro/twitter_banner.png" class="twitter-banner"></div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div id="contact">
+                <div class="contact-link" id="youtube">
+                    <a href="https://www.youtube.com/@SirSpiro" target="_blank">
+                        <img class="contact-img" src="images/icons/social/YouTube.png">
+                        <p class="contact-text" type="desktop">@SirSpiro</p>
+                    </a>
+                </div>
+                <div class="contact-link" id="twitter">
+                    <a href="https://www.twitter.com/SirSpiroSZN" target="_blank">
+                        <img class="contact-img" src="images/icons/social/Twitter.png">
+                        <p class="contact-text" type="desktop">@SirSpiroSZN</p>
+                    </a>
+                </div>
+                <div class="contact-link" id="discord">
+                    <a href="https://discord.gg/xz3S4nK" target="_blank">
+                        <img class="contact-img" src="images/icons/social/Discord.png">
+                        <p class="contact-text" type="desktop">Spiro#0001</p>
+                    </a>
+                </div>
+                <div class="contact-link" id="github">
+                    <a href="https://www.github.com/DamienDavisNeff" target="_blank">
+                        <img class="contact-img" src="images/icons/social/GitHub.png">
+                        <p class="contact-text" type="desktop">DamienDavisNeff</p>
+                    </a>
+                </div>
+                <div class="contact-link" id="email">
+                    <a href="mailto:sir@sirspiro.com" target="_blank">
+                        <img class="contact-img" src="images/icons/social/Mail.png">
+                        <p class="contact-text" type="desktop">sir@sirspiro.com</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>twemoji.parse(document.body)</script>
+</body>
+</html>

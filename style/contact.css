@@ -1,0 +1,19 @@
+#contact {
+    margin-top: 30px;
+    vertical-align: middle;
+    text-align: center;
+}
+.contact-link {
+    display: inline-block;
+} .contact-link a:hover {
+    opacity: 0.55;
+}
+.contact-img {
+    height: 30px;
+}
+.contact-img,
+.contact-text {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px;
+}
