@@ -1,13 +1,17 @@
 const channelId = "UCDMbJEDDrYjwT-WZTBK9pEQ";
+
 RecentVideo(channelId);
+// CheckStream(channelId);
+
 async function RecentVideo(id) {
     console.log(`Getting the most recent video for channel: ${id}`);
     const channelURL = `https://www.youtube.com/feeds/videos.xml?channel_id=${id}`;
     console.log(`Recent videos (XML): ${channelURL}`);
+
+    return;
     const reqURL = `https://api.rss2json.com/v1/api.json?rss_url=${channelURL}`;
     console.log(`Recent videos (JSON): ${reqURL}`);
-    const result = await FetchData(reqURL);
-    console.log("Fetch complete");
+    const result = JSON.parse(await FetchData(reqURL));
     console.log(result)
     if(result.status != "ok") return console.error("Error in fetching video list")
     console.log(result.items);
@@ -31,4 +35,9 @@ async function DisplayVideo(data,parent,link,titleDisplay,publishDisplay,thumbna
     if(publishDisplay != null && publishDisplay != undefined) document.querySelector(`#${publishDisplay}`).innerHTML = `${new Date(data.pubDate).toLocaleDateString()}`;
     if(thumbnailDisplay != null && thumbnailDisplay != undefined) document.querySelector(`#${thumbnailDisplay}`).src = data.thumbnail;
     console.log("Displaying YouTube video successfully")
+}
+
+async function CheckStream(id) {
+    const channelURL = `https://www.youtube.com/feeds/videos.xml?channel_id=${id}`; // RSS Feed
+    console.log(await FetchData(channelURL));
 }
