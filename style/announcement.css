@@ -1,11 +1,11 @@
 #announcement-holder {
-  background-color: var(--announce-color);
+  background-color: var(--background-tertiary);
   padding: var(--padding-amount);
   position: fixed;
   top: 0;
   left: 0;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: var(--announce-text);
+  color: var(--default-text);
   overflow: hidden;
   width: 100%;
   display: flex;

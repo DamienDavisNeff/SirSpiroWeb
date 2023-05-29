@@ -5,7 +5,12 @@ RecentVideo(channelId);
 
 async function RecentVideo(id) {
     const channelURL = `https://www.youtube.com/feeds/videos.xml?channel_id=${id}`;
-    const response = await FetchData(channelURL);
+    let response;
+    try {
+        await FetchData(channelURL);
+    } catch(error) {
+        console.error(error);
+    }
     const result = await ParseVideoData(response);
     DisplayVideo(result,"#youtube","#youtube-link","#youtube-title","#youtube-date","#youtube-thumbnail")
 }
@@ -52,6 +57,7 @@ async function DisplayVideo(data,parent,link,titleDisplay,publishDisplay,thumbna
 // ###
 
 async function ParseVideoData(data) {
+    if(data == null || data == undefined) return null;
     if(window.DOMParser) {
         parser = new DOMParser();
         xmlDoc = parser.parseFromString(data,"text/xml");

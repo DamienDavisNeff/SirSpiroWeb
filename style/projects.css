@@ -11,7 +11,7 @@
     align-items: center;
     max-width: 45%; /* Adjust the max-width as desired */
     text-align: center;
-    background-color: var(--project-color);
+    background-color: var(--background-secondary);
     padding: var(--padding-amount);
     border-radius: 8px;
     transition-duration: 250ms;

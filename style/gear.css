@@ -6,6 +6,10 @@
     margin-bottom: 0;
 }
 
+.about-parent:hover {
+    transform: scale(1,1) !important;
+}
+
 .gear-content {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust the minmax values as needed */
@@ -16,7 +20,7 @@
 .gear-parent {
     flex: 1;
     text-align: left;
-    background-color: var(--project-color);
+    background-color: var(--background-secondary);
     padding: var(--padding-amount);
     border-radius: 8px;
     transition-duration: 250ms;

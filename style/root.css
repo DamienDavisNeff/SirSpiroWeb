@@ -1,11 +1,8 @@
 :root {
     --background-main: #000000;
-    --background-secondary: #3f3f3f;
+    --background-secondary: #1b1b1b;
+    --background-tertiary: #181818;
     --default-text: #ffffff;
-    --announce-color: #1b1b1b;
-    --announce-text: #ffffff;
-    --project-color: #1b1b1b;
-    --project-text: #ffffff;
     --padding-amount: 20px;
     --margin-amount: 40px;
     --border-radius: 8px;
