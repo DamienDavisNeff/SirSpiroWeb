@@ -19,7 +19,7 @@ async function GetAlert(url) {
     }
     // gets announcement data from realtime database
     console.log("Getting updated announcement")
-    const data = await FetchData(url);
+    const data = JSON.parse(await FetchData(url));
     console.log(data);
     UpdateAnnouncmentInfo(data);
     var newData = {
