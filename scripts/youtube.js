@@ -4,10 +4,12 @@ RecentVideo(channelId);
 // CheckStream(channelId);
 
 async function RecentVideo(id) {
-    const channelURL = `https://www.youtube.com/feeds/videos.xml?channel_id=${id}`;
+    const targetURL = `https://www.youtube.com/feeds/videos.xml?channel_id=${id}`;
+    const encodedURL = encodeURIComponent(targetURL);
+    const channelURL = `https://cors-proxy.damiendietz2.workers.dev/proxy?url=${encodedURL}`;
     let response;
     try {
-        await FetchData(channelURL);
+        response = await FetchData(channelURL);
     } catch(error) {
         console.error(error);
     }
