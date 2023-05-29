@@ -5,22 +5,22 @@
     transform: scale(1.05,1.05);
 }
 
-.youtube {
+#youtube {
     margin-top: var(--margin-amount);
     margin-bottom: var(--margin-amount);
     display: flex;
     justify-content: center;
 }
-
 #youtube-thumbnail {
     display: block;
     margin-left: auto;
     margin-right: auto;
     max-height: 400px;
-    width: auto;
     max-width: 100%;
     border-radius: 8px;
+    
 }
+
 
 #youtube p {
     margin-top: 0px;

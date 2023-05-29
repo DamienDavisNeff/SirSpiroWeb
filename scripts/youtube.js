@@ -4,40 +4,77 @@ RecentVideo(channelId);
 // CheckStream(channelId);
 
 async function RecentVideo(id) {
-    console.log(`Getting the most recent video for channel: ${id}`);
     const channelURL = `https://www.youtube.com/feeds/videos.xml?channel_id=${id}`;
-    console.log(`Recent videos (XML): ${channelURL}`);
-
-    return;
-    const reqURL = `https://api.rss2json.com/v1/api.json?rss_url=${channelURL}`;
-    console.log(`Recent videos (JSON): ${reqURL}`);
-    const result = JSON.parse(await FetchData(reqURL));
-    console.log(result)
-    if(result.status != "ok") return console.error("Error in fetching video list")
-    console.log(result.items);
-    DisplayVideo(result.items[0],"youtube","youtube-link","youtube-title","youtube-date","youtube-thumbnail");
+    const response = await FetchData(channelURL);
+    const result = await ParseVideoData(response);
+    DisplayVideo(result,"#youtube","#youtube-link","#youtube-title","#youtube-date","#youtube-thumbnail")
 }
 
 async function DisplayVideo(data,parent,link,titleDisplay,publishDisplay,thumbnailDisplay) {
-    console.log("Starting to display most recent video");
-    console.log(data);
-    if(data == null || data == undefined) return console.error("Video data not provided");
-    if(parent == null || parent == undefined) {
-        console.log("Hiding parent")
-        const parents = document.querySelectorAll(`#${parent}`);
-        parents.forEach(element => {
+    if(data == null || data == undefined) {
+        console.warn("Data null/undefined")
+        if(parent != null || parent != undefined) document.querySelectorAll(parent).forEach(element => {
             element.style.display = "none";
         });
+        if(link != null || link != undefined) document.querySelectorAll(link).forEach(element => {
+            element.style.display = "none";
+        });
+        if(titleDisplay != null || titleDisplay != undefined) document.querySelectorAll(titleDisplay).forEach(element => {
+            element.style.display = "none";
+        });
+        if(publishDisplay != null || publishDisplay != undefined) document.querySelectorAll(publishDisplay).forEach(element => {
+            element.style.display = "none";
+        });
+        if(thumbnailDisplay != null || thumbnailDisplay != undefined) document.querySelectorAll(thumbnailDisplay).forEach(element => {
+            element.style.display = "none";
+        });
+        return console.log("All elements hidden");
     }
-    console.log("Unhiding elements")
-    if(link != null && link != undefined) document.querySelector(`#${link}`).href = data.link;
-    if(titleDisplay != null && titleDisplay != undefined) document.querySelector(`#${titleDisplay}`).innerHTML = data.title;
-    if(publishDisplay != null && publishDisplay != undefined) document.querySelector(`#${publishDisplay}`).innerHTML = `${new Date(data.pubDate).toLocaleDateString()}`;
-    if(thumbnailDisplay != null && thumbnailDisplay != undefined) document.querySelector(`#${thumbnailDisplay}`).src = data.thumbnail;
-    console.log("Displaying YouTube video successfully")
+    for(let a = data.length-1; a > -1; a--) {
+        // if I want streams to be included in recent video, comment next line out
+        if(data[a].isLive) continue;
+        console.log(data[a]);
+        document.querySelectorAll(link).forEach(element => {
+            element.href = data[a].link;
+        });
+        if(titleDisplay != null || titleDisplay != undefined) document.querySelectorAll(titleDisplay).forEach(element => {
+            element.innerHTML = data[a].title;
+        });
+        if(publishDisplay != null || publishDisplay != undefined) document.querySelectorAll(publishDisplay).forEach(element => {
+            element.innerHTML = new Date(data[a].date).toLocaleDateString();
+        });
+        if(thumbnailDisplay != null || thumbnailDisplay != undefined) document.querySelectorAll(thumbnailDisplay).forEach(element => {
+            element.src = data[a].thumbnail;
+        });
+    }
 }
 
-async function CheckStream(id) {
-    const channelURL = `https://www.youtube.com/feeds/videos.xml?channel_id=${id}`; // RSS Feed
-    console.log(await FetchData(channelURL));
+// ###
+
+async function ParseVideoData(data) {
+    if(window.DOMParser) {
+        parser = new DOMParser();
+        xmlDoc = parser.parseFromString(data,"text/xml");
+    } else {
+        xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+        xmlDoc.async = false;
+        xmlDoc.loadXML(data);
+    }
+    var entries = xmlDoc.getElementsByTagName("entry");
+    var videos = [];
+    for(let a = 0; a < entries.length; a++) {
+        console.log(entries[a]);
+        var isLive = false;
+        if(entries[a].getElementsByTagName("media:group")[0].getElementsByTagName("media:description")[0].innerHTML.includes("LIVE=TRUE")) isLive = true;
+        const currentVideo = {
+            "title":entries[a].getElementsByTagName("title")[0].innerHTML,
+            "description":entries[a].getElementsByTagName("media:group")[0].getElementsByTagName("media:description")[0].innerHTML,
+            "date":entries[a].getElementsByTagName("published")[0].innerHTML,
+            "thumbnail":entries[a].getElementsByTagName("media:group")[0].getElementsByTagName("media:thumbnail")[0].getAttribute("url").replace("hq","maxres"),
+            "link":entries[a].getElementsByTagName("link")[0].getAttribute("href"),
+            "isLive":isLive
+        }
+        videos.push(currentVideo);
+    }
+    return videos;
 }

@@ -1,6 +1,7 @@
 # Spiro ease of use
 firebase-deploy.bat
 send-webhook.bat
+disable-cors-brave.bat
 
 # Debugging scripts
 scripts/debug.js
