@@ -3,9 +3,9 @@ async function GoToLink(link,newTab) {
     window.open(link,"_blank");
 }
 
-async function FetchData(url) {
+async function FetchData(url, options = {}) {
     try {
-        const response = await fetch(url);
+        const response = await fetch(url,options);
         return await response.text();
     } catch (error) {
         console.error("There has been an error",error);

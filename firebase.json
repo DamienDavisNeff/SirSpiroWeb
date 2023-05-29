@@ -7,7 +7,18 @@
       "**/node_modules/**"
     ],
     "cleanUrls":true,
-    "trailingSlash":false
+    "trailingSlash":false,
+    "headers": [
+      {
+        "source": "**/*",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          }
+        ]
+      }
+    ]
   },
   "error_pages":[
     {"code":400,"path":"/400.html"},
