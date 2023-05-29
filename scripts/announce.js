@@ -38,7 +38,7 @@ async function UpdateAnnouncmentInfo(data) {
     console.log("Updating announcement");
     console.log(data);
     // checks to ensure data is valid & the data should be displayed
-    if(data != null && data.isDisplayed) { 
+    if(data != null && data.isDisplayed && new Date(data.expiresAt) > new Date()) { 
         // and makes announcement visible, and pushes down the rest of the page
         document.querySelector("#announcement-holder").style.display = "";
         document.querySelector("#content").classList.add("push-down");
