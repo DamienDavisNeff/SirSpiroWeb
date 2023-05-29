@@ -52,6 +52,7 @@ async function DisplayVideo(data,parent,link,titleDisplay,publishDisplay,thumbna
         });
         if(thumbnailDisplay != null || thumbnailDisplay != undefined) document.querySelectorAll(thumbnailDisplay).forEach(element => {
             element.src = data[a].thumbnail;
+            element.alt = data[a].title;
         });
     }
 }
