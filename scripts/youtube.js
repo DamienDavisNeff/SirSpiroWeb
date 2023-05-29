@@ -18,11 +18,11 @@ async function DisplayVideo(data,parent,link,titleDisplay,publishDisplay,thumbna
     console.log("Starting to display most recent video");
     console.log(data);
     if(data == null || data == undefined) return console.error("Video data not provided");
-    if(parent != null || parent != undefined) {
-        console.log("Unhiding parent")
+    if(parent == null || parent == undefined) {
+        console.log("Hiding parent")
         const parents = document.querySelectorAll(`#${parent}`);
         parents.forEach(element => {
-            element.style.display = "";
+            element.style.display = "none";
         });
     }
     console.log("Unhiding elements")
