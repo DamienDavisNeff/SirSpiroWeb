@@ -5,9 +5,9 @@
 #thumbnails {
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    grid-gap: 40px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    grid-gap: var(--margin-amount);
+    margin-top: var(--margin-amount);
+    margin-bottom: var(--margin-amount);
 }
 
 .youtube-thumbnail {
@@ -29,9 +29,14 @@ screen and (max-width:910px) {
 
 /* */
 
+:root {
+    --margin-other2: 10px;
+    --margin-other1: calc(var(--margin-amount) - var(--margin-other2));
+}
+
 #branding {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: var(--margin-other1);
+    margin-bottom: var(--margin-other1);
 }
 
 .branding-collection {
@@ -46,8 +51,8 @@ screen and (max-width:910px) {
 }
 
 .grid-item {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: var(--margin-other2);
+    margin-bottom: var(--margin-other2);
     position: relative;
     display: flex;
 }

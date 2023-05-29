@@ -44,6 +44,6 @@ screen and (max-width:910px) {
     }
     .project-parent {
         max-width: 95%;
-        margin-bottom: 40px; /* Add some space between stacked project-parent elements */
+        margin-bottom: var(--margin-amount); /* Add some space between stacked project-parent elements */
     }
 }

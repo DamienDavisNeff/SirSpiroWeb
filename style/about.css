@@ -1,5 +1,5 @@
 #about {
-    margin: 40px 0 40px 0;
+    margin: var(--margin-amount) 0 var(--margin-amount) 0;
     width: 100%;
 }
 .about-parent {

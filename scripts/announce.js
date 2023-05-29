@@ -19,23 +19,15 @@ async function GetAlert(url) {
     }
     // gets announcement data from realtime database
     console.log("Getting updated announcement")
-    fetch(url)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(data) {
-            console.log(data);
-            UpdateAnnouncmentInfo(data);
-            var newData = {
-                data: data,
-                timestamp: new Date().getTime()
-            }
-            localStorage.setItem("alertData",JSON.stringify(newData));
-        })
-        .catch(function(error) {
-            console.error('Error fetching data:', error);
-            UpdateAnnouncmentInfo(null);
-        });
+    const data = await FetchData(url);
+    console.log(data);
+    UpdateAnnouncmentInfo(data);
+    var newData = {
+        data: data,
+        timestamp: new Date().getTime()
+    };
+    console.log("Saving annoucement to cache")
+    localStorage.setItem("alertData",JSON.stringify(newData));
 }
 
 

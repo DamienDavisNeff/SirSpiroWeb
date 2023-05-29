@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: left;
-    margin-top: 40px;
+    margin-top: var(--margin-amount);
     margin-bottom: 0;
 }
 
@@ -20,7 +20,7 @@
     padding: var(--padding-amount);
     border-radius: 8px;
     transition-duration: 250ms;
-    margin-bottom: 40px;
+    margin-bottom: var(--margin-amount);
 }
 
 .gear-parent h1 {

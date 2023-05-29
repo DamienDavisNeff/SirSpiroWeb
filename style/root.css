@@ -7,6 +7,8 @@
     --project-color: #1b1b1b;
     --project-text: #ffffff;
     --padding-amount: 20px;
+    --margin-amount: 40px;
+    --border-radius: 8px;
 }
 .debug {
     border: 3px solid red;

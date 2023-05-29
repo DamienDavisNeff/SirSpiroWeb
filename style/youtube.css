@@ -1,0 +1,26 @@
+.youtube {
+    margin-top: var(--margin-amount);
+    margin-bottom: var(--margin-amount);
+    transition-duration: 250ms;
+} .youtube:hover {
+    transform: scale(1.05,1.05);
+}
+
+#youtube-thumbnail {
+    width: 100%;
+    border-radius: 8px;
+}
+
+#youtube p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+#youtube p#youtube-title {
+    font-weight: bold;
+    margin-top: 10px;
+}
+#youtube p#youtube-date {
+    font-size: 10px;
+    margin-top: 5px;
+}
