@@ -1,0 +1,3 @@
+set /p webhookUrl=<webhook_url.txt
+curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": null, \"embeds\": [{\"title\": \"The SirSpiro website has been updated\", \"description\": \"A new version of https://www.sirspiro.com/ has been pushed to firebase, and the rollout has begun.\",\"color\": 16711680,\"author\": {\"name\": \"Damien DavisNeff\",\"icon_url\": \"https://avatars.githubusercontent.com/u/105996288?v=4\"}}],\"attachments\": []}" %webhookUrl%
+firebase deploy
