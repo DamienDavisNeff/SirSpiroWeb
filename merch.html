@@ -1,0 +1,298 @@
+<script>
+    window.location.href = "https://www.store.sirspiro.com";
+</script>
+
+<!-- TOP CUSTOM HTML -->
+
+<!-- CSS GLOBAL --> 
+<style>
+    :root {
+        --background-main: #000000;
+        --background-secondary: #1b1b1b;
+        --background-tertiary: #181818;
+        --default-text: #ffffff;
+        --padding-amount: 20px;
+        --margin-amount: 40px;
+        --border-radius: 8px;
+    }
+    a:not(.video-tile__link):hover {
+    opacity:75%;
+    }
+    .debug {
+        border: 3px solid red;
+    }
+    
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .push-down {
+        margin-top: 60px !important;
+    }
+    .push-top {
+        margin-bottom: 60px !important;
+    }
+</style>
+<!-- GLOBAL SCRIPTS -->
+<script>
+    async function GoToLink(link,newTab) {
+        if(!newTab) return window.location.href = link;
+        window.open(link,"_blank");
+    }
+    
+    async function FetchData(url, options = {}) {
+        try {
+            const response = await fetch(url,options);
+            return await response.text();
+        } catch (error) {
+            console.error("There has been an error",error);
+        }
+    }
+</script>
+<!-- ANNOUNCEMENT -->
+<div id="custom-announcement">
+    <div id="announcement-holder" style="display:none">
+        <div class="announcement-parent">
+            <p id="announce-title" style="display:none"></p>
+            <p id="announce-content" style="display:none"></p>
+            <p id="announce-author" style="display:none"></p>
+            <p id="announce-date" style="display:none"></p>
+        </div>
+    </div>
+    <!-- SCRIPTING -->
+    <script defer>
+        window.onload = GetAlert("https://sirspirowebsite-default-rtdb.firebaseio.com/alert.json"); // Gets Announcement Information On Page Load
+        async function GetAlert(url) {
+            var localAlert = localStorage.getItem("alertData"); // Attempts to get info from localStorage
+            if(localAlert) {
+                parsedData = JSON.parse(localAlert);
+                currentTime = new Date().getTime();
+                // checks to see if its been less than 2 hours
+                if(currentTime - parsedData.timestamp < 2 * 60 * 60 * 1000)  {// 2 hours converted into ms ||| 2hours * 60 minutes * 60 seconds * 1000 ms
+                    // if it has, dont bother rechecking announcement
+                    UpdateAnnouncmentInfo(parsedData.data);
+                    return;
+                }
+                console.warn("Cached announcement is too old");
+            }
+            // gets announcement data from realtime database
+            const data = JSON.parse(await FetchData(url));
+            UpdateAnnouncmentInfo(data);
+            var newData = {
+                data: data,
+                timestamp: new Date().getTime()
+            };
+            localStorage.setItem("alertData",JSON.stringify(newData));
+        }
+        
+        async function UpdateAnnouncmentInfo(data) {
+            // checks to ensure data is valid & the data should be displayed
+            if(data != null && data.isDisplayed && new Date(data.expiresAt) > new Date()) { 
+                // and makes announcement visible, and pushes down the rest of the page
+                document.querySelector("#announcement-holder").style.display = "";
+                document.querySelector(".page").classList.add("push-down");
+            } else return console.warn("Announcement data not provided, or is hidden"); // If the announcment is to be shown, unhide it
+            // If each announcement element is to be shown, unhide them
+            if(data.contents.title.isDisplayed) document.querySelector("#announce-title").style.display = "";
+            if(data.contents.content.isDisplayed) document.querySelector("#announce-content").style.display = "";
+            if(data.contents.author.isDisplayed) document.querySelector("#announce-author").style.display = "";
+            if(data.contents.date.isDisplayed) document.querySelector("#announce-date").style.display = "";
+            // Update each announcment element with it's data
+            document.querySelector("#announce-title").innerHTML = data.contents.title.content;
+            document.querySelector("#announce-content").innerHTML = data.contents.content.content;
+            document.querySelector("#announce-author").innerHTML = data.contents.author.content;
+            document.querySelector("#announce-date").innerHTML = new Date(data.contents.date.content).toLocaleString();
+            // check if content is overflowing 
+            if(await isOverflowing(document.querySelector(".announcement-parent"))) duplicateAndScroll(document.querySelector(".announcement-parent"),document.querySelector("#announcement-holder"),"announcement-parent");
+        }
+        
+        async function isOverflowing(element) {
+            if(element.offsetWidth > window.innerWidth) { console.warn("Element overflowing"); return true; }
+            return false;
+        }
+        
+        async function duplicateAndScroll(element,parent,_class) {
+            var cloned = element.cloneNode(true); // duplicates element
+            cloned.style.left = '100%'; // and offsets the clone
+            parent.appendChild(cloned); // clone becomes child of parent element
+            var scrollElements = document.querySelectorAll(`.${_class}`); // and gets all elements with class
+            scrollElements[0].classList.add("scroll"); // and adds offset animations
+            scrollElements[1].classList.add("scroll2"); // to each of them
+        }
+    </script>
+    <!-- CSS -->
+    <style>
+        #announcement-holder {
+            background-color: var(--background-tertiary);
+            padding: var(--padding-amount);
+            position: fixed;
+            top: 0;
+            left: 0;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: var(--default-text);
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+            z-index: 999;
+        }
+        
+        .announcement-parent {
+            margin: 0;
+            vertical-align: middle;
+            display: flex;
+        }
+        .scroll {
+            animation: scrollText 20s linear infinite;
+        }
+        .scroll2 {
+            animation: scrollText2 20s linear infinite;
+        }
+        
+        #announce-title,
+        #announce-content,
+        #announce-author,
+        #announce-date {
+            font-size: 15px;
+            margin: 0;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            display: inline-block;
+        }
+        
+        #announce-title {
+            font-weight: bold;
+            margin-right: 10px;
+            text-transform: uppercase;
+        }
+        
+        #announce-content {
+            margin-right: 10px;
+        }
+        
+        #announce-author {
+            font-style: italic;
+            margin-right: 10px;
+        }
+        
+        #announce-date {
+            margin-right: 0;
+        }
+        
+        /* ANIMATIONS */
+        @keyframes scrollText {
+            0% {
+                left: 0;
+                transform: translateX(0);
+            }
+            50% {
+                left: -100%;
+                transform: translateX(-100%);
+            }
+            50.00001% {
+                left: 100%;
+                transform: translateX(100%);
+            }
+            100% {
+                left: 0;
+                transform: translateX(0);
+            }
+        }
+        @keyframes scrollText2 {
+            0% {
+                left: 0;
+                transform: translateX(0);
+            }
+            50% {
+                left: -100%;
+                transform: translateX(-100%);
+            }
+            99.99999% {
+                left: -200%;
+                transform: translateX(-200%);
+            }
+            100% {
+                left: 0;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</div>
+<!-- CSS ROTATE -->
+<style>
+    img.header__logo-image {
+        transition-duration:250ms
+    } img.header__logo-image:hover {
+        transform:rotate(25deg);
+    }
+    a {
+        transition-duration: 250ms;
+    }
+    a[href*="twitter"]:hover {
+        transform:rotate(15deg);
+    }
+</style>
+
+<!-- BOTTOM CUSTOM HTML -->
+
+<!-- REMOVES BORDER FROM FOOTER -->
+<div id="footer-contents">
+    <style>
+        .footer {
+            display:none;
+        }
+    </style>
+    <div class="container wrapper">
+        <div class="footer__socials">
+            <ul class="footer__list footer__list--socials">
+                <li class="footer__list-item footer__list-item--social">
+                    <a href="https://www.youtube.com/channel/UCDMbJEDDrYjwT-WZTBK9pEQ" target="_blank" class="footer__social-link">
+                        <svg width="24" height="17" viewBox="0 0 24 17" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.062 0H3.938A3.944 3.944 0 0 0 0 3.939v9.121A3.944 3.944 0 0 0 3.938 17h16.125A3.944 3.944 0 0 0 24 13.06V3.939A3.944 3.944 0 0 0 20.062 0zm-3.524 8.531l-6.769 4.331a.504.504 0 0 1-.509.017.5.5 0 0 1-.26-.438V3.779a.502.502 0 0 1 .77-.422l6.769 4.332a.499.499 0 0 1-.001.842z" fill-rule="nonzero"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="footer__list-item footer__list-item--social">
+                    <a href="https://instagram.com/SirSpiro" target="_blank" class="footer__social-link">
+                        <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.495 0h11.01A5.494 5.494 0 0 1 22 5.495v11.01A5.494 5.494 0 0 1 16.505 22H5.495A5.494 5.494 0 0 1 0 16.505V5.495A5.494 5.494 0 0 1 5.495 0zM2.2 16.505A3.294 3.294 0 0 0 5.495 19.8h11.01a3.294 3.294 0 0 0 3.295-3.295V5.495A3.294 3.294 0 0 0 16.505 2.2H5.495A3.294 3.294 0 0 0 2.2 5.495v11.01zM5.5 11a5.5 5.5 0 1 1 11 0 5.5 5.5 0 0 1-11 0zm8.8 0a3.3 3.3 0 1 0-6.6 0 3.3 3.3 0 0 0 6.6 0zm2.2-4.4a1.1 1.1 0 1 0 0-2.2 1.1 1.1 0 0 0 0 2.2z" fill-rule="nonzero"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="footer__list-item footer__list-item--social">
+                    <a href="https://twitter.com/SirSpiroSZN" target="_blank" class="footer__social-link">
+                        <svg width="21" height="17" viewBox="0 0 21 17" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.49 2.431c-.746.333-1.375.344-2.041.015.86-.515.9-.877 1.21-1.85a8.344 8.344 0 0 1-2.646 1.011 4.166 4.166 0 0 0-7.098 3.8A11.822 11.822 0 0 1 1.33 1.054 4.165 4.165 0 0 0 2.62 6.615a4.15 4.15 0 0 1-1.886-.52v.052a4.168 4.168 0 0 0 3.342 4.085 4.194 4.194 0 0 1-1.882.072 4.172 4.172 0 0 0 3.891 2.892 8.376 8.376 0 0 1-6.167 1.725 11.793 11.793 0 0 0 6.385 1.87c7.662 0 11.85-6.346 11.85-11.85 0-.182-.002-.361-.01-.54.813-.587 1.79-1.134 2.348-1.97z" fill-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="footer__list-item footer__list-item--social">
+                    <a href="https://discordapp.com/invite/xz3S4nK" target="_blank" class="footer__social-link">
+                        <svg width="24" height="24" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 4.5C15 4.5 13.2802 3.15375 11.25 3L11.067 3.36638C12.9022 3.816 13.7445 4.45875 14.625 5.25C13.1074 4.47525 11.61 3.75 9 3.75C6.39 3.75 4.89262 4.47525 3.375 5.25C4.2555 4.45875 5.2575 3.744 6.933 3.36638L6.75 3C4.62 3.20063 3 4.5 3 4.5C3 4.5 1.07963 7.28475 0.75 12.75C2.685 14.9824 5.625 15 5.625 15L6.24 14.181C5.196 13.818 4.0185 13.1704 3 12C4.21425 12.9187 6.04688 13.875 9 13.875C11.9531 13.875 13.7858 12.9187 15 12C13.9819 13.1704 12.8044 13.818 11.76 14.181L12.375 15C12.375 15 15.315 14.9824 17.25 12.75C16.9204 7.28475 15 4.5 15 4.5ZM6.5625 11.25C5.83725 11.25 5.25 10.5788 5.25 9.75C5.25 8.92125 5.83725 8.25 6.5625 8.25C7.28775 8.25 7.875 8.92125 7.875 9.75C7.875 10.5788 7.28775 11.25 6.5625 11.25ZM11.4375 11.25C10.7122 11.25 10.125 10.5788 10.125 9.75C10.125 8.92125 10.7122 8.25 11.4375 8.25C12.1628 8.25 12.75 8.92125 12.75 9.75C12.75 10.5788 12.1628 11.25 11.4375 11.25Z"></path>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <nav class="footer__nav">
+            <ul class="footer__list footer__list--menu">
+                <li class="footer__list-item">
+                    <a href="/pages/contact" class="footer__menu-link">Contact</a>
+                </li>
+                <li class="footer__list-item">
+                    <a href="/pages/terms-of-service" class="footer__menu-link">Terms of Service</a>
+                </li>
+                <li class="footer__list-item">
+                    <a href="/pages/privacy-policy" class="footer__menu-link">Privacy Policy</a>
+                </li>
+                <li class="footer__list-item">
+                    <a href="/pages/returns-faq" class="footer__menu-link">Returns &amp; FAQ</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="footer__bottom">
+            <ul class="footer__list footer__list--bottom"></ul>
+        </div>
+    </div>
+    <br><br>
+</div>
