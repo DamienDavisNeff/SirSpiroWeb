@@ -58,3 +58,4 @@ node_modules/
 desktop.ini
 webhook_url.txt
 desktop.ini
+firebase_deploy.bat
