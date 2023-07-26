@@ -56,6 +56,11 @@ node_modules/
 # dotenv environment variables file
 .env
 desktop.ini
-webhook_url.txt
 desktop.ini
 firebase_deploy.bat
+
+# webhook info
+.webhook_url.txt
+.webhook.author.txt
+.webhook.description.txt
+.webhook.title.txt

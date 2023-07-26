@@ -4,7 +4,11 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      ".webhook_url.txt",
+      ".webhook.author.txt",
+      ".webhook.description.txt",
+      ".webhook.title.txt"
     ],
     "cleanUrls":true,
     "trailingSlash":false,
