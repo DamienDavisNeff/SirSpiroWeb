@@ -60,7 +60,8 @@ desktop.ini
 firebase_deploy.bat
 
 # webhook info
-.webhook_url.txt
-.webhook.author.txt
-.webhook.description.txt
-.webhook.title.txt
+webhook_url.txt
+webhook_author.txt
+webhook_description.txt
+webhook_title.txt
+webhook_image.txt

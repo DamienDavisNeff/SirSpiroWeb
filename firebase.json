@@ -5,10 +5,11 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**",
-      ".webhook_url.txt",
-      ".webhook.author.txt",
-      ".webhook.description.txt",
-      ".webhook.title.txt"
+      "webhook_url.txt",
+      "webhook_author.txt",
+      "webhook_image.txt",
+      "webhook_description.txt",
+      "webhook_title.txt"
     ],
     "cleanUrls":true,
     "trailingSlash":false,
