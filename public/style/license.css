@@ -1,0 +1,11 @@
+div {
+    max-width: 30%;
+    text-align: left;
+    margin: 5% auto 5% auto;
+}
+
+.center-text {
+    max-width: 30%;
+    text-align: center !important;
+    margin: 5% auto 5% auto;
+}

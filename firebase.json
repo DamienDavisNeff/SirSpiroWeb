@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": ".",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -9,7 +9,9 @@
       "webhook_author.txt",
       "webhook_image.txt",
       "webhook_description.txt",
-      "webhook_title.txt"
+      "webhook_title.txt",
+      "**/.firebase/*",
+      "**/.git/*"
     ],
     "cleanUrls":true,
     "trailingSlash":false,
