@@ -1,0 +1,82 @@
+<html><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <!-- -->
+    <meta property="og:title" content="Error">
+    <meta property="og:image" content="https://www.sirspiro.com/error_red.png">
+    <meta property="og:description" content="An error has occured. Try again later, or try a different link.">
+    <meta property="og:url" content="https://www.sirspiro.com">
+    <meta property="og:image:width" content="2681">
+    <meta property="og:image:height" content="1878">
+    <meta property="og:type" content="website">
+    <!-- -->
+    <link rel="shortcut icon" href="https://www.sirspiro.com/error_favicon.png" onerror="this.href='error_favicon.png'" type="image/png">
+    <style>
+        * { transition-duration: 250ms; }
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .parent-vertical {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .parent-horizontal {
+            display: flex;
+            align-items: center;
+        }
+        a {
+            text-decoration: none;
+            color: #ff0000;
+        }
+        .error-code {
+            font-size: 35px;
+            margin-right: 5px;
+        }
+        .error-text {
+            font-size: 25px;
+            margin-left: 5px;
+        }
+        .error-image {
+            border-radius:1vw;
+            width:20vw;
+            height: auto;
+            margin: 20px;
+        }
+        .error-image:hover {
+            transform:scale(1.1);
+        }
+        .low-opacity {
+            opacity: 0.6;
+        }
+        .seperator {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="parent-vertical">
+        <div class="parent-horizontal">
+            <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes" target="_blank">
+                <p class="error-code">503.</p>
+            </a>
+            <p class="seperator">.</p>
+            <p class="error-text low-opacity">Service Unavailable</p>
+	    </div>
+        <div class="parent-horizontal scene">
+            <img id="hoveredError" src="error_images/error.png" onerror="this.src=`https://www.sirspiro.com/error.png`" class="error-image">
+        </div>
+        <div class="parent-horizontal">
+            <p class="error-text">I don't know what's happening.</p>
+        </div>
+    </div>
+
+</body></html>
