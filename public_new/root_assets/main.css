@@ -1,0 +1,35 @@
+:root {
+    --background: black;
+    --text-main: white;
+    /* use with text-shadow: var(--stroke-size) */
+    --stroke-small: 
+        -1px -1px 0 #000,
+        0   -1px 0 #000,
+        1px -1px 0 #000,
+        1px  0   0 #000,
+        1px  1px 0 #000,
+        0    1px 0 #000,
+        -1px  1px 0 #000,
+        -1px  0   0 #000;
+    --stroke-large: 
+        -4px -4px 0 #000,
+        0   -4px 0 #000,
+        4px -4px 0 #000,
+        4px  0   0 #000,
+        4px  4px 0 #000,
+        0    4px 0 #000,
+        -4px  4px 0 #000,
+        -4px  0   0 #000;
+}
+
+html {
+    background-color: var(--background);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header-main {
+    font-family: "marvin-round", sans-serif;
+    color: red;
+    text-shadow: var(--stroke-small);
+}
