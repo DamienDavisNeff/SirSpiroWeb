@@ -9,17 +9,20 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://use.typekit.net/ton7cqs.css">
     <link rel="stylesheet" href="/root_assets/main.css">
-    <link rel="stylesheet" href="/root_assets/header.css">
+    <link rel="stylesheet" href="/root_assets/header/header.css">
+    <link rel="stylesheet" href="/root_assets/header/header_secondary.css">
+    <link rel="stylesheet" href="/root_assets/portfolio/portfolio_area.css">
     <!-- Scripts -->
     <!-- <script src="fetchMerch.js"></script> -->
-    <script src="/root_assets/menu.js"></script>
+    <script src="/root_assets/header/menu.js"></script>
+    <script src="/root_assets/portfolio/load_images.js" defer></script>
 </head>
 <body>
 
     <header>
         <div class="menu-btn">&#9776;</div>
         <div class="logo">
-            <a href="/"><img src="/root_assets/header_main.png" alt="Logo"></a>
+            <a href="/"><img src="/root_assets/header/header_main.png" alt="Logo"></a>
         </div>
         <nav class="icon-links" mobile="hide">
             <a href="https://store.sirspiro.com"><img src="/root_assets/icons/shopping/Cart.png" alt="🛒" style="filter:invert()"></a>
@@ -32,5 +35,15 @@
             <li><a href="https://store.sirspiro.com" class="header-main">Store</a></li>
         </ul>
     </div>
+    <br><br><br>
+    <div class="container" hidden>
+        <div class="background-image"></div>
+        <div class="text-content">
+          <div class="title header-main">SirSpiro</div>
+          <div class="description">Your Description Goes Here</div>
+          <a href="#" class="button">Click Me</a>
+        </div>
+    </div>
+    <div id="imageGrid"></div>
 </body>
 </html>
