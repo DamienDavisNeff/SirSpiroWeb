@@ -1,0 +1,73 @@
+#header * {
+    transition-duration: 250ms;
+}
+
+#header {
+    min-width: fit-content;
+    max-width: 85vw;
+    width: 50vw;
+    height: 6vh;
+    border-radius: 15px;
+    background-color: rgba(0,0,0,0.6);
+    margin-top: 1vh;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    justify-content: space-around; /* Evenly distribute tabs */
+    align-items: center; /* Center items vertically */
+    padding: 5px; /* Padding inside the header */
+}
+
+.tab {
+    height: calc(100% - 2 * 5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    flex: 1;
+}
+.tab.first {
+    margin-left: 5px;
+} .tab.last {
+    margin-right: 5px;
+}
+
+.tab img {
+    height: 85%;
+    width: auto;
+    filter: invert();
+}
+
+.tab-text {
+    position: absolute;
+    bottom: -35px;
+    opacity: 0;
+    text-transform: uppercase;
+    font-size: large;
+}
+
+.tab:hover {
+    background-color: white !important;
+} .tab:hover img {
+    filter: none !important;
+} .tab:hover .tab-text {
+    opacity: 1 !important;
+}
+
+.tab.active {
+    background-color: white;
+} .tab.active img {
+    filter: none;
+} .tab.active .tab-text {
+    opacity: 1;
+}
+
+#header:has(.tab:hover) .tab.active {
+    background: none;
+} #header:has(.tab:hover) .tab.active img {
+    filter: invert();
+} #header:has(.tab:hover) .tab.active .tab-text {
+    opacity: 0;
+}

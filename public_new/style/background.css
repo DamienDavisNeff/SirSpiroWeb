@@ -1,0 +1,25 @@
+html {
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(to right, rgba(0, 40, 81, 1), rgba(6, 9, 23, 1));
+    background-attachment: fixed;
+}
+
+.floating-triangles {
+    position: fixed; /* Keep triangles fixed to viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.triangle {
+    position: relative;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 26px solid rgba(6, 45, 89, 0.8);
+}

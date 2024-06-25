@@ -1,0 +1,40 @@
+.debug {
+    border: 3px solid red;
+}
+
+* {
+    transition-duration: 250ms;
+    scroll-behavior: smooth !important;
+}
+
+body {
+    margin: var(--base-padding);
+    padding: var(--base-padding);
+    font-family: var(--font-family);
+    background-color: #000000;
+    color: #ffffff;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+@media screen and (orientation: portrait) {
+    [type="desktop"] {
+        display: none !important;
+    }
+} @media screen and (orientation: landscape) {
+    [type="mobile"] {
+        display: none !important;
+    }
+}
+
+
+a {
+    text-decoration: none;
+    color: var(--text-color); 
+}
+.emoji {
+    height: 1.5rem;
+    vertical-align:text-top;
+}
